@@ -32,7 +32,7 @@
 
           <user-message>
             <b-form-input type="text" v-model="term" />
-            <b-button @click="getStats" size="sm" variant="primary" class="btn-send">Send</b-button>
+            <b-button @click="getStats" size="sm" variant="warning" class="btn-send drop-shadow">Send</b-button>
           </user-message>
 
           <div class="label-container">
@@ -182,7 +182,7 @@ export default {
   margin-bottom: 10px;
 }
 .label {
-  background: $s-yellow;
+  background: #9075fc;
 }
 #canvas {
   display: none;
@@ -221,6 +221,9 @@ video {
   margin-top: 10px;
   margin-left: auto;
   display: block;
+}
+.btn {
+  font-weight: 800;
 }
 
 @-webkit-keyframes fadeInLeft {
