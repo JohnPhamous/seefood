@@ -13,8 +13,9 @@
         <user-message v-if="photo.length">
           <img class="photo-taken" v-bind:src="photo" width="100%" />
         </user-message>
+        
         <message>Should I use this photo?</message>
-
+        
         <div class="buttons">
           <b-button v-on:click="getLabels" class="btn drop-shadow positive" size="sm">
             Looks good!
@@ -25,7 +26,9 @@
         </div>
 
         <div v-if="grabbingLabels">
-          <message>Great, let's see what you're eating...</message>
+          <transition enter-active-class="fadeInLeft-1" name="fade3">
+            <message v-if="grabbingLabels">Great, let's see what you're eating...</message>
+          </transition>
           <message>Looks yummy! What do you call it?</message>
 
           <user-message>
@@ -65,6 +68,7 @@
 
           </div>
         </div>
+        
       </b-container>
     </div>
 </template>
@@ -192,9 +196,109 @@ video {
   text-align: right;
   margin-bottom: 50px;
 }
-.btn-send {
+<<<<<<< head .btn-send {
   margin-top: 10px;
   margin-left: auto;
   display: block;
 }
 </style>
+=======
+
+@-webkit-keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation: fadeIn 0.5s 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.fadeInLeft-1 {
+  -webkit-animation-name: fadeInLeft;
+  animation: fadeInLeft 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.fadeInLeft-2 {
+  -webkit-animation-name: fadeInLeft;
+  opacity: 0;
+  animation: fadeInLeft 0.5s 1s;
+  animation-fill-mode: forwards;
+}
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  opacity: 0;
+  animation: fadeInRight 0.5s 1.5s;
+  animation-fill-mode: forwards;
+}
+</style>
+>>>>>>> 507c7852894ad34c438d4c2e13e72a0842cf991c
