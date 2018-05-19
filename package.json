@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/JohnPhamous/seefood#readme",
   "dependencies": {
+    "@google-cloud/vision": "^0.19.0",
+    "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
+    "clarifai": "^2.7.1",
+    "cors": "^2.8.4",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "node": "^10.1.0",

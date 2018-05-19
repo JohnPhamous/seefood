@@ -42,7 +42,7 @@ export default {
       canvas: {},
       photo: '',
       grabbingLabels: false,
-      apiurl: ''
+      apiurl: 'http://localhost:3000/getLabels'
     };
   },
   methods: {
@@ -52,12 +52,16 @@ export default {
         .getContext('2d')
         .drawImage(this.video, 0, 0, 640, 480);
       this.photo = canvas.toDataURL('image/png');
+      console.log(this.photo);
     },
     getLabels() {
       // console.log('get labels from google');
       this.grabbingLabels = true;
       axios
-        .post(`${apiurl}`, {
+        .post(`${this.apiurl}`, {
+          headers: {
+            'Access-Control-Allow-Origin': '*'
+          },
           image: this.photo
         })
         .then(res => {

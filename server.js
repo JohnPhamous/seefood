@@ -1,14 +1,46 @@
 var express = require('express');
 var request = require('request');
 var cheerio = require('cheerio');
+var cors = require('cors')
+var bodyParser = require("body-parser");
 var app = express();
+const Clarifai = require('clarifai');
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors())
+
+const capp = new Clarifai.App({
+  apiKey: 'd1b7bc4b46f84e6d94c15d9d74430474'
+})
 
 app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
-  res.send('Home page');
+  capp.models.predict("aaa03c23b3724a16a56b629203edc62c", "https://samples.clarifai.com/metro-north.jpg").then(
+    function(response) {
+      console.log(response)
+      res.send(response['rawData']['outputs']['0']['data']['concepts'])
+    },
+    function(err) {
+    }
+  );
 });
+
+app.post('/getLabels', (req, res) => {
+  const image = req.body.image;
+
+  capp.models.predict("aaa03c23b3724a16a56b629203edc62c", image).then(
+    function(response) {
+      console.log(response)
+      res.send(response['rawData']['outputs']['0']['data']['concepts'])
+    },
+    function(err) {
+      res.send('There was an error')
+    }
+  );
+})
 
 app.post('/search/:label', function(req, res) {
   var food = req.params.label;
