@@ -9,14 +9,16 @@
 
       <canvas ref="canvas" id="canvas" width="640" height="480"></canvas>
 
-      <b-container v-if="photo.length && !grabbingLabels">
-        <transition-group v-if="photo.length && !grabbingLabels" enter-active-class="fadeIn" leave-active-class="fadeOut">
-          <user-message v-if="photo.length" key=1>
+      <b-container v-if="photo.length">
+
+        <transition-group name="fade" mode="out-in">
+          <user-message v-if="photo.length && !grabbingLabels" key=1>
             <img class="photo-taken" v-bind:src="photo" width="100%" />
           </user-message>
-          <message key=2>Should I use this photo?</message>
+
+          <message v-if="!grabbingLabels" key=2>Should I use this photo?</message>
         
-          <div class="buttons" key=3>
+          <div class="buttons" key=3 v-if="!grabbingLabels">
             <b-button v-on:click="getLabels" class="btn drop-shadow positive" size="sm">
               Looks good!
             </b-button>
@@ -24,67 +26,75 @@
               Let's retake it
             </b-button>
           </div>
-        </transition-group> 
+        </transition-group>
         
-        <div v-if="grabbingLabels">
-          <message v-if="grabbingLabels">Great, let's see what you're eating...</message>
-          <message>Looks yummy! What do you call it?</message>
+        <transition-group name="fade" mode="out-in">
+          <div v-if="grabbingLabels" key=1>
+            
+            <message v-if="grabbingLabels && !showStats">Great, let's see what you're eating...</message>
+            <message v-if="!showStats">Looks yummy! What do you call it?</message>
 
-          <user-message>
-            <b-form-input type="text" v-model="term" />
-            <b-button @click="getStats" size="sm" variant="warning" class="btn-send drop-shadow">Send</b-button>
-          </user-message>
+            <transition-group name="fade" mode="out-in" v-if="!showStats">
+              <user-message key=1>
+                <b-form-input type="text" v-model="term" />
+                <b-button @click="getStats" size="sm" variant="warning" class="btn-send drop-shadow">Send</b-button>
+              </user-message>
 
-          <div class="label-container">
-            <b-badge
-              pill
-              variant="primary"
-              class="drop-shadow label"
-              v-for="(label, index) in labels"
-              :key="label"
-              v-on:click="addTerm(label, index)"
-            >
-              {{ label }}
-            </b-badge>
+              <div class="label-container" key=2>
+                <b-badge
+                  pill
+                  variant="primary"
+                  class="drop-shadow label"
+                  v-for="(label, index) in labels"
+                  :key="label"
+                  v-on:click="addTerm(label, index)"
+                >
+                  {{ label }}
+                </b-badge>
+              </div>
+            </transition-group>
+
+            <transition name="fade" mode="out-in">
+              <div v-if="showStats && !showingGraphs">
+                <message>Awesome! Here are some stats for "{{ term }}":</message>
+                <message>Total Fat: 10g</message>
+                <message>Cholesterol: 18mg</message>
+                <message>Sodium: 640mg</message>
+                <message>Total Carbs: 36g</message>
+                <message>Would you like to log this?</message>
+
+                <div class="buttons">
+                  <b-button v-on:click="showGraphs" class="btn drop-shadow positive" size="sm">
+                    Yes
+                  </b-button>
+                  <b-button v-on:click="reset" class="btn drop-shadow negative" size="sm">
+                    No
+                  </b-button>
+                </div>
+              </div>
+            </transition>
+
+            <transition name="fade" mode="in-out">
+              <div v-if="showingGraphs" style="margin-top: 30px;">
+                <message>
+                  Adding "{{ term }}" to your log, here's your log for today:
+                </message>
+                <message>
+                  Fat: 68%
+                </message>
+                <message>
+                  Cholesterol: 84%
+                </message>
+                <message>
+                  Sodium: 92%
+                </message>
+                <message>
+                  Carbs: 79%%
+                </message>
+              </div>
+            </transition>
           </div>
-
-          <div v-if="showStats">
-            <message>Awesome! Here are some stats for "{{ term }}":</message>
-            <message>Total Fat: 10g</message>
-            <message>Cholesterol: 18mg</message>
-            <message>Sodium: 640mg</message>
-            <message>Total Carbs: 36g</message>
-            <message>Would you like to log this?</message>
-
-            <div class="buttons">
-              <b-button v-on:click="showGraphs" class="btn drop-shadow positive" size="sm">
-                Yes
-              </b-button>
-              <b-button v-on:click="reset" class="btn drop-shadow negative" size="sm">
-                No
-              </b-button>
-            </div>
-
-          </div>
-
-          <div v-if="showingGraphs">
-            <message>
-              Adding "{{ term }}" to your log, here's your log for today:
-            </message>
-            <message>
-              Fat: 68%
-            </message>
-            <message>
-              Cholesterol: 84%
-            </message>
-            <message>
-              Sodium: 92%
-            </message>
-            <message>
-              Carbs: 79%%
-            </message>
-          </div>
-        </div>
+        </transition-group>
         
       </b-container>
     </div>
@@ -123,7 +133,6 @@ export default {
         .getContext('2d')
         .drawImage(this.video, 0, 0, 640, 480);
       this.photo = canvas.toDataURL('image/png');
-      console.log(this.photo);
     },
     addTerm(term, index) {
       console.log(term);
@@ -171,6 +180,13 @@ export default {
 
 <style lang="scss">
 @import '../assets/styles/seefood.scss';
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 .label-container {
   text-align: right;
   margin-right: 20px;
