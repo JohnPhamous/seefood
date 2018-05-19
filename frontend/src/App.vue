@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <div class="background"></div>
-    <b-container>
-      <Home />
-    </b-container>
+    <Home />
   </div>
 </template>
 
