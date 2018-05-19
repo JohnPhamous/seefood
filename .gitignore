@@ -1,0 +1,20 @@
+<<<<<<< HEAD
+.DS_Store
+node_modules/
+/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+=======
+.git_ignore
+node_modules
+*.swp
+>>>>>>> ee7d813aabee69f8103b92fa42724a49a4046b4f
