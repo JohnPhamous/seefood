@@ -14,7 +14,7 @@
           type="text"
           v-on:keyup.enter="submitName"
         ></b-form-input>
-        <b-button @click="submitName" size="sm" variant="primary" class="btn-send">Send</b-button>
+        <b-button @click="submitName" size="sm" variant="warning" class="btn-send drop-shadow">Send</b-button>
       </div>
 
       <transition enter-active-class="fadeInLeft-1" name="fade">
@@ -145,6 +145,7 @@ export default {
   margin-top: 10px;
   margin-left: auto;
   display: block;
+  font-weight: 800;
 }
 
 @-webkit-keyframes fadeInLeft {

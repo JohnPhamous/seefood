@@ -17,6 +17,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 html,
 body,
 #app {
@@ -26,6 +28,7 @@ body,
 }
 html,
 body {
+  font-family: 'Roboto', sans-serif !important;
   // background: linear-gradient(to bottom, white, #ccc);
 }
 .background {
