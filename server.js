@@ -40,7 +40,8 @@ app.post('/search/:label', function(req, res) {
     carbs = removeLast(carbs);
     
     protein = nutrition[10].data.trim();
-       
+    protein = removeLast(protein);
+    
     foodInfo = {"label": label,
               "servingSize": servingSize,
               "calories": calories,
@@ -50,6 +51,10 @@ app.post('/search/:label', function(req, res) {
   
     res.json(foodInfo);
   });
+});
+
+app.get('/search/:label', function(req, res) {
+  res.send(`Nutrition for ${req.params.label}`)
 });
 
 app.listen(process.env.PORT || 3000, function(){
