@@ -33,6 +33,7 @@
 import Message from './MessageBubble';
 import UserMessage from './UserMessageBubble';
 import ActionButton from './ActionButton';
+import axios from 'axios';
 
 export default {
   data() {
@@ -40,7 +41,8 @@ export default {
       video: {},
       canvas: {},
       photo: '',
-      grabbingLabels: false
+      grabbingLabels: false,
+      apiurl: ''
     };
   },
   methods: {
@@ -52,8 +54,18 @@ export default {
       this.photo = canvas.toDataURL('image/png');
     },
     getLabels() {
-      console.log('get labels from google');
+      // console.log('get labels from google');
       this.grabbingLabels = true;
+      axios
+        .post(`${apiurl}`, {
+          image: this.photo
+        })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     reset() {
       this.photo = '';
