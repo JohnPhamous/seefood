@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "seafood-204620",
+  "private_key_id": "122af8c0072ae708413c2be06f69f4b5c8292d04",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC15zJu0SJPohuI\nZdEc2BSpm0tRnnGy4WF4Z6LJVXXdJgbC0ViHckEVKvxxq6uwgGvYHCxkq9RJ5Mxm\n+8YL+GV6NGyY19BSfID5sZBbyVdZyCDBll726ljovAC1c5nZQARgfeBf8RBrCO7o\n22vHCmJ3c/P8bLEus+7QXFpdIujEIRpFpoTfIbXOzGOZNNQKyRjdiPy34TDwP+6h\nRga8R/9GxwnZ0s8XZLDPUJbvp3HtPX3eU2qnGmbuOi1oTY1BaDvwWrPOq1t2K+79\nIqqo6Uq5TXVR4ZElg3GUxfbrxhiqItkwR4SAquJxcTCDSqISTk6M+cGNqa55CsAt\nNgyMLA7XAgMBAAECggEALD5+VVb37f+ji8McIFRsfi6AHOuZgyVvxE4M2cS4JOC9\nb0BlNJi1PNVWTr2vRoCN+qQrphbnTUvh7cCalMnHwPgkW+7ORGn1Iwat8q1f2j4j\nvYJ6ObuZgY5M69Wg26dHCUNEwoFLeYVUOv430lNzzNM+yqyTUiVA1pxH/HRjwmRS\n4H/Z2xMB2/hGh+eiY6OVSfZi2bQHWs8V+lys+LUKu+qtGWPwbtU/AK+6R1RXGS9U\n7rKlCiwEt3AX4zT0r2mz0gc0naPzFPlDtJYXfT1847Zl63p7QWaOlVCxVqNo9cyQ\ndjTzu1gD2pyYWBlya6osSuDnn2erK8zuOtKSUUTh0QKBgQD3Rwes9qHHLURnGMA5\nv5y4WZywHZMJ06qa2TAHzvs5FJhe0836yHQO9u0ATvrOWcY1/iTrXDBdjlSpDA21\ny6N5ERM4wOaLHdcaEOIyZo2jogsPUPnoE0oC8YmVMo1R+Yx37lceCPPYrGmkyayh\no0QMCRxlT4vgEhs35+hXyFgkcQKBgQC8UdJ+aJgind4O85XA1zLRcENcq0hIMoF7\nGsqAcUU8L/3Yo9x5XaXWMWmSOfJKiFJVX5klYp4PU08MW3cIWRJZmuNzTKZL+2d9\ngRCBlabyVeEv0/q8Uha+UevKpPdrZRs4xEPdFoidRrJNL3VxSqnOSkFbLX968r/+\nuy9iE3TrxwKBgQCaVqoyyclV8SoVkzw/jxo5ci07O2pQIt4EQnUZGpZxHSqxXU/e\nLIlL4dExdRpT+3KctqDCikrhyfmLfat9Abpp0T+HF9eNkzVz3n/gZ2QWcwimKauh\nr5BtX+a4ydGtDa4gGRIk+/9/CLXzlbD7PlU1keY4UbsDQynb7hJ13+Ur8QKBgEoJ\nDOz/Z9gsIlHUd6phsCvgq8rx16/yky73oGcQoPyBjZWvDg10wK7NrEh9mYCtyVih\nBc9JzwQNZ4VfLBPPGMS7fPImTzaN9ujDZd7cG88n7ijkeK2yxBg8kquPYWoKTMJr\nfpabtkfGtHBd2RkaFlnwnXMgFv8aElst8fnn1k6fAoGAOtCaWdUm9NEf65kSssGP\nsJkkBRK2ps1jZW9Nm6P+veaMwxwSr3cnkZxqhN+ffWhCRsIfV50XHT4bInj4jFLi\nscVCxqxKBICyTaRUfwro+QfBiU8dW1uP+Icvpc5yttWbOd9lqILx/FUxnWORKYAR\nNxWfmiQu57iR9McPlftyFRM=\n-----END PRIVATE KEY-----\n",
+  "client_email": "seafood@seafood-204620.iam.gserviceaccount.com",
+  "client_id": "111387422536941252181",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/seafood%40seafood-204620.iam.gserviceaccount.com"
+}
