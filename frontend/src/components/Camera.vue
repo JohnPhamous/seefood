@@ -9,26 +9,25 @@
 
       <canvas ref="canvas" id="canvas" width="640" height="480"></canvas>
 
-      <b-container v-if="photo.length">
-        <user-message v-if="photo.length">
-          <img class="photo-taken" v-bind:src="photo" width="100%" />
-        </user-message>
+      <b-container v-if="photo.length && !grabbingLabels">
+        <transition-group v-if="photo.length && !grabbingLabels" enter-active-class="fadeIn" leave-active-class="fadeOut">
+          <user-message v-if="photo.length" key=1>
+            <img class="photo-taken" v-bind:src="photo" width="100%" />
+          </user-message>
+          <message key=2>Should I use this photo?</message>
         
-        <message>Should I use this photo?</message>
+          <div class="buttons" key=3>
+            <b-button v-on:click="getLabels" class="btn drop-shadow positive" size="sm">
+              Looks good!
+            </b-button>
+            <b-button v-on:click="reset" class="btn drop-shadow negative" size="sm">
+              Let's retake it
+            </b-button>
+          </div>
+        </transition-group> 
         
-        <div class="buttons">
-          <b-button v-on:click="getLabels" class="btn drop-shadow positive" size="sm">
-            Looks good!
-          </b-button>
-          <b-button v-on:click="reset" class="btn drop-shadow negative" size="sm">
-            Let's retake it
-          </b-button>
-        </div>
-
         <div v-if="grabbingLabels">
-          <transition enter-active-class="fadeInLeft-1" name="fade3">
-            <message v-if="grabbingLabels">Great, let's see what you're eating...</message>
-          </transition>
+          <message v-if="grabbingLabels">Great, let's see what you're eating...</message>
           <message>Looks yummy! What do you call it?</message>
 
           <user-message>
@@ -319,5 +318,28 @@ video {
   opacity: 0;
   animation: fadeInRight 0.5s 1.5s;
   animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation: fadeOut 1s;
 }
 </style>
