@@ -1,38 +1,46 @@
 <template>
   <div class="home">
-    <div class="speech-bubble drop-shadow fadeInLeft-1">
-      <h1 class="title">Hi! I'm Seefood,</h1>
-      <h1 class="title">I can help you keep track of your nutrition using computer vision!</h1>
-    </div>
-    <div class="speech-bubble drop-shadow fadeInLeft-2" >
-      <h1 class="title">First off, what's your name?</h1>
-    </div>
-    <div class="speech-bubble-user user drop-shadow fadeInRight">
-      <b-form-input 
-        v-model="name"
-        type="text"
-        v-on:keyup.enter="submitName"
-      ></b-form-input>
-      <b-button @click="submitName" size="sm" variant="primary" class="btn-send">Send</b-button>
-    </div>
+    <div class="messages" v-if="!scanningFood">
+      <div class="speech-bubble drop-shadow fadeInLeft-1">
+        <h1 class="title">Hi! I'm Seefood,</h1>
+        <h1 class="title">I can help you keep track of your nutrition using computer vision!</h1>
+      </div>
+      <div class="speech-bubble drop-shadow fadeInLeft-2">
+        <h1 class="title">First off, what's your name?</h1>
+      </div>
+      <div class="speech-bubble-user user drop-shadow fadeInRight">
+        <b-form-input 
+          v-model="name"
+          type="text"
+          v-on:keyup.enter="submitName"
+        ></b-form-input>
+        <b-button @click="submitName" size="sm" variant="primary" class="btn-send">Send</b-button>
+      </div>
 
-    <div v-if="nameSubmitted" class="speech-bubble drop-shadow">
-      <h1 class="title">Hey {{ name }},</h1>
-      <h1 class="title">what's <span class="meal">{{ timeToMeal }}</span> today?</h1>
+      <div v-if="nameSubmitted" class="speech-bubble drop-shadow">
+        <h1 class="title">Hey {{ name }},</h1>
+        <h1 class="title">what's <span class="meal">{{ timeToMeal }}</span> today?</h1>
+      </div>
+      <div v-if="nameSubmitted" class="btn-center-wrapper">
+        <b-button size="lg" @click="scanningFood = true;" variant="primary" class="btn-scan drop-shadow">Scan Food</b-button>
+      </div>
+
     </div>
-    <div v-if="nameSubmitted" class="btn-center-wrapper">
-      <b-button size="lg" variant="primary" class="btn-scan drop-shadow">Scan Food</b-button>
-    </div>
+    
+    <camera v-if="scanningFood" />
   </div>
 </template>
 
 <script>
+import Camera from './Camera';
+
 export default {
   name: 'Home',
   data() {
     return {
       name: '',
-      nameSubmitted: false
+      nameSubmitted: false,
+      scanningFood: false
     };
   },
   methods: {
@@ -56,6 +64,9 @@ export default {
         return 'snacks are you having';
       }
     }
+  },
+  components: {
+    Camera
   }
 };
 </script>
@@ -112,7 +123,7 @@ export default {
   color: white;
   font-size: 1.5em;
 }
-.home {
+.messages {
   padding-top: 5vh;
 }
 .btn-scan {
