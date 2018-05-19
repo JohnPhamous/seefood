@@ -17,14 +17,18 @@
         <b-button @click="submitName" size="sm" variant="primary" class="btn-send">Send</b-button>
       </div>
 
-      <div v-if="nameSubmitted" class="speech-bubble drop-shadow">
-        <h1 class="title">Hey {{ name }},</h1>
-        <h1 class="title">what's <span class="meal">{{ timeToMeal }}</span> today?</h1>
-      </div>
-      <div v-if="nameSubmitted" class="btn-center-wrapper">
-        <b-button size="lg" @click="scanningFood = true;" variant="primary" class="btn-scan drop-shadow">Scan Food</b-button>
-      </div>
-
+      <transition enter-active-class="fadeInLeft-1" name="fade">
+        <div v-if="nameSubmitted" class="speech-bubble drop-shadow">
+          <h1 class="title">Hey {{ name }},</h1>
+          <h1 class="title">what's <span class="meal">{{ timeToMeal }}</span> today?</h1>
+        </div>
+      </transition>
+      <transition enter-active-class="fadeIn" name="fade">
+        <div v-if="nameSubmitted" class="btn-center-wrapper">
+          <b-button size="lg" @click="scanningFood = true;" variant="primary" class="btn-scan drop-shadow">Scan Food</b-button>
+        </div>
+      </transition>
+      
     </div>
     
     <camera v-if="scanningFood" />
@@ -196,23 +200,48 @@ export default {
   }
 }
 
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation: fadeIn 0.5s 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
 .fadeInLeft-1 {
   -webkit-animation-name: fadeInLeft;
-  animation: fadeInLeft 1.5s;
+  animation: fadeInLeft 0.5s;
   animation-fill-mode: forwards;
 }
 
 .fadeInLeft-2 {
   -webkit-animation-name: fadeInLeft;
   opacity: 0;
-  animation: fadeInLeft 1.5s 1.5s;
+  animation: fadeInLeft 0.5s 1s;
   animation-fill-mode: forwards;
 }
 
 .fadeInRight {
   -webkit-animation-name: fadeInRight;
   opacity: 0;
-  animation: fadeInRight 1s 3s;
+  animation: fadeInRight 0.5s 1.5s;
   animation-fill-mode: forwards;
 }
 
