@@ -196,13 +196,11 @@ video {
   text-align: right;
   margin-bottom: 50px;
 }
-<<<<<<< head .btn-send {
+.btn-send {
   margin-top: 10px;
   margin-left: auto;
   display: block;
 }
-</style>
-=======
 
 @-webkit-keyframes fadeInLeft {
   from {
@@ -301,4 +299,3 @@ video {
   animation-fill-mode: forwards;
 }
 </style>
->>>>>>> 507c7852894ad34c438d4c2e13e72a0842cf991c
