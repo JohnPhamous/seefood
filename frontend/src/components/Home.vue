@@ -92,12 +92,12 @@ export default {
   bottom: 0;
   width: 0;
   height: 0;
-  border: 38px solid transparent;
+  border: 15px solid transparent;
   border-right-color: $s-primary;
   border-left: 0;
   border-bottom: 0;
   margin-top: -19px;
-  margin-left: -38px;
+  margin-left: -20px;
 }
 .speech-bubble-user {
   position: relative;
@@ -115,12 +115,12 @@ export default {
   bottom: 0;
   width: 0;
   height: 0;
-  border: 38px solid transparent;
+  border: 15px solid transparent;
   border-left-color: $s-red;
   border-right: 0;
   border-bottom: 0;
   margin-top: -19px;
-  margin-right: -38px;
+  margin-right: -15px;
 }
 .title {
   // font-weight: 800;
@@ -178,7 +178,6 @@ export default {
     opacity: 0;
     -webkit-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0);
-  
   }
   to {
     opacity: 1;
@@ -244,5 +243,4 @@ export default {
   animation: fadeInRight 0.5s 1.5s;
   animation-fill-mode: forwards;
 }
-
 </style>

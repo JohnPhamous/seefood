@@ -24,7 +24,47 @@
           </b-button>
         </div>
 
-        <message v-if="grabbingLabels">Great, let's see what you're eating...</message>
+        <div v-if="grabbingLabels">
+          <message>Great, let's see what you're eating...</message>
+          <message>Looks yummy! What do you call it?</message>
+
+          <user-message>
+            <b-form-input type="text" v-model="term" />
+            <b-button @click="getStats" size="sm" variant="primary" class="btn-send">Send</b-button>
+          </user-message>
+
+          <div class="label-container">
+            <b-badge
+              pill
+              variant="primary"
+              class="drop-shadow label"
+              v-for="(label, index) in labels"
+              :key="label"
+              v-on:click="addTerm(label, index)"
+            >
+              {{ label }}
+            </b-badge>
+          </div>
+
+          <div v-if="showStats">
+            <message>Awesome! Here are some stats for "{{ term }}":</message>
+            <message>Total Fat: 10g</message>
+            <message>Cholesterol: 18mg</message>
+            <message>Sodium: 640mg</message>
+            <message>Total Carbs: 36g</message>
+            <message>Would you like to log this?</message>
+
+            <div class="buttons">
+              <b-button v-on:click="showGraphs" class="btn drop-shadow positive" size="sm">
+                Yes
+              </b-button>
+              <b-button v-on:click="reset" class="btn drop-shadow negative" size="sm">
+                No
+              </b-button>
+            </div>
+
+          </div>
+        </div>
       </b-container>
     </div>
 </template>
@@ -42,10 +82,16 @@ export default {
       canvas: {},
       photo: '',
       grabbingLabels: false,
-      apiurl: 'http://localhost:3000/getLabels'
+      apiurl: 'http://localhost:3000/getLabels',
+      labels: ['pizza', 'cheese', 'pasta', 'meat', 'slice', 'bread'],
+      term: '',
+      showStats: false
     };
   },
   methods: {
+    getStats() {
+      this.showStats = true;
+    },
     capture() {
       this.canvas = this.$refs.canvas;
       var context = this.canvas
@@ -54,22 +100,27 @@ export default {
       this.photo = canvas.toDataURL('image/png');
       console.log(this.photo);
     },
+    addTerm(term, index) {
+      console.log(term);
+      this.term += ` ${term}`;
+      this.labels.splice(index, 1);
+    },
     getLabels() {
       // console.log('get labels from google');
       this.grabbingLabels = true;
-      axios
-        .post(`${this.apiurl}`, {
-          headers: {
-            'Access-Control-Allow-Origin': '*'
-          },
-          image: this.photo
-        })
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      // axios
+      //   .post(`${this.apiurl}`, {
+      //     headers: {
+      //       'Access-Control-Allow-Origin': '*'
+      //     },
+      //     image: this.photo
+      //   })
+      //   .then(res => {
+      //     console.log(res);
+      //   })
+      //   .catch(err => {
+      //     console.log(err);
+      //   });
     },
     reset() {
       this.photo = '';
@@ -95,7 +146,19 @@ export default {
 
 <style lang="scss">
 @import '../assets/styles/seefood.scss';
-
+.label-container {
+  text-align: right;
+  margin-right: 20px;
+}
+.badge {
+  margin-left: 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+.label {
+  background: $s-yellow;
+}
 #canvas {
   display: none;
 }
@@ -104,16 +167,12 @@ video {
   height: 100%;
 }
 #camera {
-  background: linear-gradient(to bottom, white, #ccc);
   height: 100vh;
   width: 100vw;
 }
 #snap {
   border-radius: 20px;
   background: $s-primary;
-}
-.photo-taken {
-  // margin-bottom: 50px;
 }
 .positive {
   background: $s-purple;
@@ -132,5 +191,10 @@ video {
 .buttons {
   text-align: right;
   margin-bottom: 50px;
+}
+.btn-send {
+  margin-top: 10px;
+  margin-left: auto;
+  display: block;
 }
 </style>

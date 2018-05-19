@@ -17,7 +17,7 @@ export default {};
   border-radius: 0.4em;
   padding: 10px;
   width: 50%;
-  margin-left: 30px;
+  margin-left: 10px;
   margin-bottom: 30px;
   color: white;
 }
@@ -28,11 +28,11 @@ export default {};
   width: 0;
   left: 5px;
   height: 0;
-  border: 38px solid transparent;
+  border: 15px solid transparent;
   border-right-color: $s-primary;
   border-left: 0;
   border-bottom: 0;
   margin-top: -19px;
-  margin-left: -38px;
+  margin-left: -15px;
 }
 </style>
