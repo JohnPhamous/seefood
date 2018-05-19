@@ -1,13 +1,13 @@
 <template>
   <div class="home">
-    <div class="speech-bubble drop-shadow">
+    <div class="speech-bubble drop-shadow fadeInLeft-1">
       <h1 class="title">Hi! I'm Seefood,</h1>
       <h1 class="title">I can help you keep track of your nutrition using computer vision!</h1>
     </div>
-    <div class="speech-bubble drop-shadow">
+    <div class="speech-bubble drop-shadow fadeInLeft-2" >
       <h1 class="title">First off, what's your name?</h1>
     </div>
-    <div class="speech-bubble-user user drop-shadow">
+    <div class="speech-bubble-user user drop-shadow fadeInRight">
       <b-form-input 
         v-model="name"
         type="text"
@@ -131,4 +131,78 @@ export default {
   margin-left: auto;
   display: block;
 }
+
+@-webkit-keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInLeft-1 {
+  -webkit-animation-name: fadeInLeft;
+  animation: fadeInLeft 1.5s;
+  animation-fill-mode: forwards;
+}
+
+.fadeInLeft-2 {
+  -webkit-animation-name: fadeInLeft;
+  opacity: 0;
+  animation: fadeInLeft 1.5s 1.5s;
+  animation-fill-mode: forwards;
+}
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  opacity: 0;
+  animation: fadeInRight 1s 3s;
+  animation-fill-mode: forwards;
+}
+
 </style>
