@@ -67,6 +67,24 @@
             </div>
 
           </div>
+
+          <div v-if="showingGraphs">
+            <message>
+              Adding "{{ term }}" to your log, here's your log for today:
+            </message>
+            <message>
+              Fat: 68%
+            </message>
+            <message>
+              Cholesterol: 84%
+            </message>
+            <message>
+              Sodium: 92%
+            </message>
+            <message>
+              Carbs: 79%%
+            </message>
+          </div>
         </div>
         
       </b-container>
@@ -89,10 +107,14 @@ export default {
       apiurl: 'http://localhost:3000/getLabels',
       labels: ['pizza', 'cheese', 'pasta', 'meat', 'slice', 'bread'],
       term: '',
-      showStats: false
+      showStats: false,
+      showingGraphs: false
     };
   },
   methods: {
+    showGraphs() {
+      this.showingGraphs = true;
+    },
     getStats() {
       this.showStats = true;
     },
