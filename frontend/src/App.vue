@@ -29,11 +29,9 @@ body {
   // background: linear-gradient(to bottom, white, #ccc);
 }
 .background {
-  background-image: url('./assets/background.jpg');
-  background-repeat: no-repeat, repeat;
-  background-position: center top;
+  background-image: url('./assets/food.png');
+  background-position: center left;
   background-attachment: fixed;
-  filter: blur(5px);
   height: 150vh;
   width: 150vw;
   position: absolute;
