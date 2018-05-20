@@ -125,7 +125,9 @@ export default {
       this.showingGraphs = true;
     },
     getStats() {
-      this.showStats = true;
+      setInterval(() => {
+        this.showStats = true;
+      }, 1000);
     },
     capture() {
       this.canvas = this.$refs.canvas;
@@ -141,7 +143,10 @@ export default {
     },
     getLabels() {
       // console.log('get labels from google');
-      this.grabbingLabels = true;
+
+      setTimeout(() => {
+        this.grabbingLabels = true;
+      }, 1500);
       // axios
       //   .post(`${this.apiurl}`, {
       //     headers: {
